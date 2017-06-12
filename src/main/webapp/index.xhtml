@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+	<script type="text/javascript">
+	 $(document).ready(function() {      
+		 
+			var erro = 0;
+			
+		                   
+			$("#botao1").click(function(event) {
+				if( $("#nome").val() === ""  ){
+						alert("Campo nome deve ser preenchido")
+						$("#nome").focus();
+						erro = 1;
+						return false;
+					}else{
+						
+					 	$("#nome").css("color", "blue").css("background", "white");
+						 $("#nome").css("border", "1px solid black");
+
+						 if( $("#data").val() === ""  ){
+								alert("Campo data deve ser preenchido")
+								$("#data").focus();
+								erro = 1;
+								return false;
+							}
+							
+						 if( $("#data").val().length  &lt; 10 ){
+
+							
+								alert("Campo data deve ser preenchido com no minimo 10")
+								$("#data").focus();
+								erro = 1;
+								return false;
+							}
+
+
+						 var count = 0; 
+						  for (var i=0; i &lt;  10;i++){
+							  console.log($("#data").val().charAt(i) )
+					            if($("#data").val().charAt(i) === '\/'){
+					                count++;
+					            }
+					        }
+					      
+
+					        
+							if( count  &lt; 2 ){
+								alert("A data deve seguir o padrao 00/00/0000 ");
+								erro = 1;
+								return false;
+							}
+
+							
+								alert("cadastro feito com sucesso");
+				     }
+
+
+					
+				
+				
+			});
+			
+		});
+	 </script>
+
+
+
+</h:head>
+<h:body>
+
+	<H2>
+		<h:outputText value="Prova JSF  RESPOSTA 1" />
+	</H2>
+
+	<h:form>
+
+		<p>Nome</p>
+		<input type="text" id="nome" />
+		<br />
+		<p>Data</p>
+		<input type="text" id="data" />
+		<br /><br />
+		<input type="submit" name="OK" value="OK" id="botao1" />
+
+	</h:form>
+	<hr />
+
+	<H2>
+		<h:outputText value="Prova JSF  RESPOSTA 2" />
+	</H2>
+
+
+	<hr />
+	<h:dataTable var="e" value="#{beanProva.listaEndereco}"
+		cellpadding="10">
+
+
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Logradouro " />
+			</f:facet>
+			<h:outputText value="#{e.logradouro}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Rua" />
+			</f:facet>
+			<h:outputText value="#{e.rua}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Bairro" />
+			</f:facet>
+			<h:outputText value="#{e.bairro}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Numero" />
+			</f:facet>
+			<h:outputText value="#{e.numero}" />
+
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Opção" />
+			</f:facet>
+			<h:form>
+				<h:inputHidden value="#{e.id}" />
+				<h:commandButton action="#{beanProva.editar( e)}" value="Editar"
+					class="btn green" />
+				<h:commandButton action="#{beanProva.deletar( e )}" value="Deletar"
+					class="btn red" />
+			</h:form>
+		</h:column>
+	</h:dataTable>
+
+
+
+</h:body>
+</html>

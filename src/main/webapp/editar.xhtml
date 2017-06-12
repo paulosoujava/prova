@@ -1,0 +1,38 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<meta charset="UTF-8" />
+	<title>Prova</title>
+
+</h:head>
+<h:body>
+
+
+
+	<h:form>
+			Logradouro<br />
+		<h:inputText value="#{beanProva.endereco.logradouro}" />
+		<br />
+	     Rua<br />
+		<h:inputText value="#{beanProva.endereco.rua}" />
+		<br />
+		Bairro<br />
+		<h:inputText value="#{beanProva.endereco.bairro}" />
+		<br />
+		Numero<br />
+		<h:inputText value="#{beanProva.endereco.numero}" />
+		<br /><br />
+		<h:commandButton action="#{beanProva.editarEndereco()}"
+			value="Editar"  />
+			<h:commandLink action="index" value="Voltar" />
+	</h:form>
+
+
+
+
+</h:body>
+</html>
